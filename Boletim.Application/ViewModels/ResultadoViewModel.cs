@@ -1,15 +1,17 @@
 ﻿using Boletim.Core.Enums;
 
-namespace Boletim.Core.Entities
+namespace Boletim.Application.ViewModels
 {
-    public class Resultado : BaseEntity
+    public class ResultadoViewModel
     {
-        public Resultado(int id, SituacaoEnum 
-            situacao, int idAluno) : base(id)
+        public ResultadoViewModel(int id, SituacaoEnum situacao, int idAluno)
         {
+            Id = id;
             Situacao = situacao;
             IdAluno = idAluno;
         }
+
+        public int Id { get; private set; }
 
         public SituacaoEnum Situacao { get; private set; }
 
