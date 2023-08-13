@@ -1,37 +1,36 @@
 ﻿using Boletim.Core.Entities;
-using Boletim.Core.Enums;
+using Microsoft.EntityFrameworkCore;
 
 namespace Boletim.Infrastructure.Persistence
 {
-    public  class BoletimDbContext
+    public  class BoletimDbContext : DbContext
     {
-        public BoletimDbContext()
+        public BoletimDbContext(DbContextOptions<BoletimDbContext> options) : base(options)
         {
-            Alunos = new List<Aluno>
-            {
-                new Aluno(1, "Felipe", "3A"),
-                new Aluno(2, "Beatriz", "1A"),
-                new Aluno(3, "Gustavo", "3C"),
-                new Aluno(4, "Igor", "2B")
-            };
-
-            Disciplinas = new List<Disciplina>
-            {
-                new Disciplina(1, "Matemática", 10.0, 1),
-                new Disciplina(2, "Português", 8.0, 1),
-
-            };
-
-            Resultados = new List<Resultado>
-            {
-                new Resultado(9, ResultadoFinalEnum.Aprovado, 1)
-            };
         }
 
-        public List<Aluno> Alunos { get; set; }
+        public DbSet<Curso> Cursos { get; set; }
 
-        public List<Disciplina> Disciplinas { get; set; }
+        public DbSet<Aluno> Alunos { get; set; }
 
-        public List<Resultado> Resultados { get; set; }
+        public DbSet<Resultado> Resultados { get; set; }
+
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            modelBuilder.Entity<Curso>()
+                .HasKey(d => d.Id);
+
+            modelBuilder.Entity<Aluno>()
+                .HasKey(a => a.Id);
+
+            modelBuilder.Entity<Aluno>()
+                .HasOne(a => a.Curso)
+                .WithMany(c => c.Alunos)
+                .HasForeignKey(a => a.IdCurso)
+                .OnDelete(DeleteBehavior.Restrict);
+
+            modelBuilder.Entity<Resultado>()
+                 .HasKey(a => a.Id);
+        }
     }
 }

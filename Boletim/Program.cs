@@ -1,6 +1,7 @@
 using Boletim.Application.Services.Implementations;
 using Boletim.Application.Services.Interfaces;
 using Boletim.Infrastructure.Persistence;
+using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -9,10 +10,13 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 
-builder.Services.AddSingleton<BoletimDbContext>();
+builder.Services.AddDbContext<BoletimDbContext>(options => options.UseInMemoryDatabase("db_Boletim"));
 
+builder.Services.AddDbContext<BoletimDbContext>();
+
+builder.Services.AddScoped<ICursoService, CursoService>();
 builder.Services.AddScoped<IAlunoService, AlunoService>();
-builder.Services.AddScoped<IDisciplinaService, DisciplinaService>();
+builder.Services.AddScoped<IResultadoService, ResultadoService>();
 
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
