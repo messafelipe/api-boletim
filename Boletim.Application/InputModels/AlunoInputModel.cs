@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace Boletim.Application.InputModels
+﻿namespace Boletim.Application.InputModels
 {
     public class AlunoInputModel
     {
@@ -12,6 +6,8 @@ namespace Boletim.Application.InputModels
 
         public required string Nome { get; set; }
 
-        public required string Turma { get; set; }
+        public required int IdCurso { get; set; }
+
+        public required double NotaCurso { get; set; }
     }
 }

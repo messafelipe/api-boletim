@@ -2,22 +2,25 @@
 {
     public class Aluno : BaseEntity
     {
-        public Aluno(int id, string nome, string turma) : base(id)
+        public Aluno(int id, string nome, int idCurso, double notaCurso) : base(id)
         {
             Nome = nome;
-            Turma = turma;
+            IdCurso = idCurso;
+            NotaCurso = notaCurso;
         }
 
         public string Nome { get; private set; }
 
-        public string Turma { get; private set; }
+        public int IdCurso { get; private set; }
 
+        public Curso Curso { get; private set; }
 
-        public void Update(int id, string nome, string turma)
+        public double NotaCurso { get; private set; }
+
+        public void Update(int id, double notaCurso)
         {
             Id = id;
-            Nome = nome;
-            Turma = turma;
+            NotaCurso = notaCurso;
         }
     }
 }

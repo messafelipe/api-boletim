@@ -2,17 +2,20 @@
 {
     public class AlunoViewModel
     {
-        public AlunoViewModel(int id, string nome, string turma)
+        public AlunoViewModel(int id, string nome, string nomeCurso, double notaCurso)
         {
             Id = id;
             Nome = nome;
-            Turma = turma;
+            NomeCurso = nomeCurso;
+            NotaCurso = notaCurso;
         }
 
         public int Id { get; private set; }
 
         public string Nome { get; private set; }
 
-        public string Turma { get; private set; }
+        public string NomeCurso { get; private set; }
+
+        public double NotaCurso { get; private set; }
     }
 }

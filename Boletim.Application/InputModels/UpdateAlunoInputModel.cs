@@ -2,8 +2,6 @@
 {
     public class UpdateAlunoInputModel
     {
-        public required string Nome { get; set; }
-
-        public required string Turma { get; set; }
+        public required double NotaCurso { get; set; }
     }
 }
